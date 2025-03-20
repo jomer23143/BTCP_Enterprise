@@ -31,7 +31,7 @@ namespace BTCP_Enterprise.Class
         {
             DataTable dt = DataSupport.RunDataTableDapper($@"Select mohId
                       ,lineNbr
-                      ,[type]
+                      ,item.ref [Group]
                       ,partId
                       ,item.descr [Description]
                       ,item.type
@@ -44,7 +44,7 @@ namespace BTCP_Enterprise.Class
                       ,wipQty [Wip qty]
                       ,relQty [pick qty]
                       ,'' [short qty]
-                      ,'' [unit]
+                      ,item.uOfm [unit]
                       FROM [MIMOMD] momd
                       join MIITEM item on item.itemId = momd.partId
                       where mohId = '{mo_number}'");
