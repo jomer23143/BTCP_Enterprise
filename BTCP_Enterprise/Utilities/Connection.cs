@@ -62,14 +62,14 @@ namespace BTCP_Enterprise
             String data = registry.Read(Def.REGKEY_SUB);
             if (data == null)
             {
-                data += String.Format($"BTC_ENTERPRISE<limiter>192.168.20.15<limiter>sa<limiter>MISys_SBM1fb<limiter>BROADBAND<limiter1>");
+                data += String.Format($"BTC_ENTERPRISE<limiter>192.168.20.15<limiter>sa<limiter>MISys_SBM1<limiter>BROADBAND<limiter1>");
                 registry.Write(Def.REGKEY_SUB, data);
             }
             String[] programs = data.Split(new String[] { "<limiter1>" }, StringSplitOptions.RemoveEmptyEntries);
 
             Utils.SetConnectionDetails();
-            //var stat = await Class.SqlCon.connections(MRPPO.Connection.GetConnectionStringReg);
-            //Class.MRPClass.dbname = Utils.DBConnection["MRPPO"]["DBNAME"].ToString() + " and " + Utils.DBConnection["PTA"]["DBNAME"].ToString();
+            var stat =  Class.SqlCon.connections(BTCP_Enterprise.Connection.GetConnectionStringReg);
+            //Class.MRPClass.dbname = Utils.DBConnection["BTC_ENTERPRISE"]["DBNAME"].ToString() + " and " + Utils.DBConnection["PTA"]["DBNAME"].ToString();
             //this.Text = $"Login v{Assembly.GetExecutingAssembly().GetName().Version.ToString()} - {Class.MRPClass.dbname}";
             //if (stat.State == ConnectionState.Open)
             //{
