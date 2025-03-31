@@ -35,8 +35,6 @@ namespace BTCP_Enterprise.Utilities
         {
             try
             {
-
-         
                 string respond = "";
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
                 httpWebRequest.ContentType = "application/json";
@@ -82,14 +80,15 @@ namespace BTCP_Enterprise.Utilities
         public static async Task<string> PostData_httpclient(string url, string data)
         {
             string responseData = "";
+            HttpResponseMessage response = new HttpResponseMessage();
             using (HttpClient client = new HttpClient())
             {
                 var content = new StringContent(data, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await client.PostAsync(url, content);
+                response = await client.PostAsync(url, content);
                 responseData = await response.Content.ReadAsStringAsync();
             }
-            return responseData;
+            return  responseData;
         }
     }
 }
