@@ -79,7 +79,6 @@ namespace BTCP_Enterprise.Forms
             {
                 bunifuloading.Show();
                 PostData();
-               
             }
         }
 
