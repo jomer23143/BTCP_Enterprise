@@ -70,6 +70,8 @@ namespace BTCP_Enterprise.Forms
             bunifuloading.Hide();
             btnnext.Enabled = false;
             btnprevious_page.Enabled = false;
+            btnnext.Visible = false;
+            btnprevious_page.Visible = false;
             Connection.InitializeConnection();
             dbConnectionSettings = Utils.DBConnection;
         }

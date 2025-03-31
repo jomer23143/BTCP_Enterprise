@@ -87,7 +87,8 @@
             this.btn_abi.IdleIconLeftImage = null;
             this.btn_abi.IdleIconRightImage = null;
             this.btn_abi.IndicateFocus = false;
-            this.btn_abi.Location = new System.Drawing.Point(12, 274);
+            this.btn_abi.Location = new System.Drawing.Point(9, 223);
+            this.btn_abi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_abi.Name = "btn_abi";
             this.btn_abi.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btn_abi.OnDisabledState.BorderRadius = 12;
@@ -121,7 +122,7 @@
             this.btn_abi.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btn_abi.OnPressedState.IconLeftImage = null;
             this.btn_abi.OnPressedState.IconRightImage = null;
-            this.btn_abi.Size = new System.Drawing.Size(288, 74);
+            this.btn_abi.Size = new System.Drawing.Size(216, 60);
             this.btn_abi.TabIndex = 3;
             this.btn_abi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btn_abi.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -176,7 +177,8 @@
             this.btn_ncticket.IdleIconLeftImage = null;
             this.btn_ncticket.IdleIconRightImage = null;
             this.btn_ncticket.IndicateFocus = false;
-            this.btn_ncticket.Location = new System.Drawing.Point(12, 181);
+            this.btn_ncticket.Location = new System.Drawing.Point(9, 147);
+            this.btn_ncticket.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_ncticket.Name = "btn_ncticket";
             this.btn_ncticket.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btn_ncticket.OnDisabledState.BorderRadius = 12;
@@ -210,7 +212,7 @@
             this.btn_ncticket.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btn_ncticket.OnPressedState.IconLeftImage = null;
             this.btn_ncticket.OnPressedState.IconRightImage = null;
-            this.btn_ncticket.Size = new System.Drawing.Size(288, 74);
+            this.btn_ncticket.Size = new System.Drawing.Size(216, 60);
             this.btn_ncticket.TabIndex = 4;
             this.btn_ncticket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btn_ncticket.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -233,7 +235,7 @@
             this.btn_kitlist.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(180)))), ((int)(((byte)(62)))));
             this.btn_kitlist.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_kitlist.BackgroundImage")));
             this.btn_kitlist.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btn_kitlist.ButtonText = "Kit List";
+            this.btn_kitlist.ButtonText = "Warehouse kitting";
             this.btn_kitlist.ButtonTextMarginLeft = 0;
             this.btn_kitlist.ColorContrastOnClick = 45;
             this.btn_kitlist.ColorContrastOnHover = 45;
@@ -266,7 +268,8 @@
             this.btn_kitlist.IdleIconLeftImage = null;
             this.btn_kitlist.IdleIconRightImage = null;
             this.btn_kitlist.IndicateFocus = false;
-            this.btn_kitlist.Location = new System.Drawing.Point(12, 87);
+            this.btn_kitlist.Location = new System.Drawing.Point(9, 71);
+            this.btn_kitlist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_kitlist.Name = "btn_kitlist";
             this.btn_kitlist.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btn_kitlist.OnDisabledState.BorderRadius = 12;
@@ -300,13 +303,14 @@
             this.btn_kitlist.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btn_kitlist.OnPressedState.IconLeftImage = null;
             this.btn_kitlist.OnPressedState.IconRightImage = null;
-            this.btn_kitlist.Size = new System.Drawing.Size(288, 74);
+            this.btn_kitlist.Size = new System.Drawing.Size(216, 60);
             this.btn_kitlist.TabIndex = 5;
             this.btn_kitlist.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btn_kitlist.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.btn_kitlist.TextMarginLeft = 0;
             this.btn_kitlist.TextPadding = new System.Windows.Forms.Padding(0);
             this.btn_kitlist.UseDefaultRadiusAndThickness = true;
+            this.btn_kitlist.Click += new System.EventHandler(this.btn_kitlist_Click);
             // 
             // panel1
             // 
@@ -314,8 +318,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(310, 71);
+            this.panel1.Size = new System.Drawing.Size(232, 58);
             this.panel1.TabIndex = 2;
             // 
             // label1
@@ -324,22 +329,24 @@
             this.label1.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.LimeGreen;
             this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(310, 71);
+            this.label1.Size = new System.Drawing.Size(232, 58);
             this.label1.TabIndex = 0;
             this.label1.Text = "Warehouse Kiting";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // WarehouseKitingSidebar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 762);
+            this.ClientSize = new System.Drawing.Size(232, 619);
             this.Controls.Add(this.btn_abi);
             this.Controls.Add(this.btn_ncticket);
             this.Controls.Add(this.btn_kitlist);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "WarehouseKitingSidebar";
             this.Text = "WarehouseKitingSidebar";
             this.panel1.ResumeLayout(false);
