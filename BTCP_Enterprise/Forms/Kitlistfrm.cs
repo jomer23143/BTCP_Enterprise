@@ -288,10 +288,6 @@ namespace BTCP_Enterprise.Forms
                             return;
                         }
                     }
-                    //else
-                    //{
-                    //    MessageBox.Show("Wrong Serial Number","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    //}
                 }
                 txtserial_number.SelectAll();
             }
