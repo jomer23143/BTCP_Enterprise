@@ -108,8 +108,7 @@ namespace BTCP_Enterprise.Forms
                 response = await client.PostAsync("https://app.btcp-enterprise.com/api/kit-list-item/scan-bulk", content);
                 responseData = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode.ToString() == "422")
-                {
-
+                { }
                 }
                 else
                 {
