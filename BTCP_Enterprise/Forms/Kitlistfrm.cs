@@ -338,7 +338,6 @@ namespace BTCP_Enterprise.Forms
                 responseData = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode.ToString() == "422")
                 {
-
                 }
                 else
                 {
