@@ -15,6 +15,8 @@ namespace BTCP_Enterprise.Utilities
 {
     public class WebRequestApi
     {
+
+
         public static async Task<string> GetData_httwebrequest(string url)
         {
             string res = "";
@@ -90,5 +92,34 @@ namespace BTCP_Enterprise.Utilities
             }
             return  responseData;
         }
+
+        //this is for getting operator info
+        public static async Task<string> Operator_httpclient(string url, string jsonData)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url),
+                    Content = new StringContent(jsonData, Encoding.UTF8, "application/json")
+                };
+
+                HttpResponseMessage response = await client.SendAsync(request);
+                string responseData = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception($"Server Error: {response.StatusCode}\n{responseData}");
+                }
+
+                return responseData;
+            }
+        }
+
+
+
     }
 }

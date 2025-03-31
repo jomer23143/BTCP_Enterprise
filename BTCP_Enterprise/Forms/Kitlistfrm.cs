@@ -66,6 +66,7 @@ namespace BTCP_Enterprise.Forms
 
         private void Kitlistfrm_Load(object sender, EventArgs e)
         {
+
             bunifuloading.Hide();
             btnnext.Enabled = false;
             btnprevious_page.Enabled = false;
