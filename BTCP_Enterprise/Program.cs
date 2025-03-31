@@ -16,7 +16,7 @@ namespace BTCP_Enterprise
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.Kitlistfrm());
+            Application.Run(new Forms.MainDashboard());
         }
     }
 }

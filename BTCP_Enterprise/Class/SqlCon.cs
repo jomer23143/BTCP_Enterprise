@@ -17,7 +17,7 @@ namespace BTCP_Enterprise.Class
         {
             SqlConnection conn;
             conn = new SqlConnection();
-            //conn.ConnectionString = "Data source=194.163.40.175;initial catalog=icehrm; uid=root;pwd=";
+         //   conn.ConnectionString = "Data source=194.163.40.175;initial catalog=icehrm; uid=root;pwd=";
             conn.ConnectionString = sqlconn;
             try
             {

@@ -58,8 +58,8 @@ namespace BTCP_Enterprise.Forms
 
         private void Kitlistfrm_Load(object sender, EventArgs e)
         {
-            Connection.InitializeConnection();
-            dbConnectionSettings = Utils.DBConnection;
+           // Connection.InitializeConnection();
+           // dbConnectionSettings = Utils.DBConnection;
         }
         DataTable dtMoDetails = new DataTable();
         DataTable dtMoHeader = new DataTable();
