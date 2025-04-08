@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BTCP_Enterprise.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,8 +32,11 @@ namespace BTCP_Enterprise.SideBar
 
         private void btn_kitlist_Click(object sender, EventArgs e)
         {
-            Forms.Login login = new Forms.Login(modulename,type);
-            login.Show();
+            //Forms.Login login = new Forms.Login(modulename,type);
+            //login.Show();
+            MainDashboard mainDashboard = (MainDashboard)Application.OpenForms["MainDashboard"];
+            Forms.Kitlist kitlist = new Forms.Kitlist();
+            mainDashboard.LoadChildForm(kitlist);
         }
     }
 }

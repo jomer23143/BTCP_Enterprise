@@ -20,7 +20,7 @@ namespace BTCP_Enterprise.Forms
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+           // this.FormBorderStyle = FormBorderStyle.None;
             formManager = new FormManager(panel_menubar, panel_sidebar);
 
             DateTime localDate = DateTime.Now;
@@ -72,13 +72,15 @@ namespace BTCP_Enterprise.Forms
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lbl_time.Text = DateTime.Now.ToString("hh:mm tt").ToUpper(); 
+            lbl_time.Text = DateTime.Now.ToString("hh:mm:ss tt").ToUpper(); 
             lbl_currentdate.Text = DateTime.Now.ToString("dddd, MMMM dd yyyy");
         }
 
         private void btn_material_recieving_Click(object sender, EventArgs e)
         {
-         
+            if (this.panel_main_form.Controls.Count > 0)
+                this.panel_main_form.Controls.Clear();
+            formManager.OpenChildForm(new SideBar.MaterialInventorySidebar(), sender);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -93,6 +95,7 @@ namespace BTCP_Enterprise.Forms
             if (this.panel_main_form.Controls.Count > 0)
                 this.panel_main_form.Controls.Clear();
             formManager.OpenChildForm(new SideBar.WarehouseKitingSidebar(), sender);
+            // formManager.OpenChildForm(new Kitlistfrm(), sender);
         }
 
         private void button3_Click(object sender, EventArgs e)

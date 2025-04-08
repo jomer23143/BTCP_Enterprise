@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtmo_number = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.colpart_serial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colipn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coldescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coltype = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,15 +64,18 @@
             this.colmo_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colitem_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.colkit_list_status_item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnserial = new System.Windows.Forms.Button();
+            this.btncomplete = new System.Windows.Forms.Button();
             this.btnnext = new System.Windows.Forms.Button();
             this.btnprevious_page = new System.Windows.Forms.Button();
             this.txtserial_number = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.bunifuloading = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnincomplete = new System.Windows.Forms.Button();
+            this.btnAddSerial = new System.Windows.Forms.Button();
+            this.btnscan = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuloading)).BeginInit();
@@ -81,7 +83,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(27)))), ((int)(((byte)(45)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -97,7 +99,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Lime;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(45)))));
             this.label1.Location = new System.Drawing.Point(20, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -110,7 +112,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(848, 80);
+            this.label2.Location = new System.Drawing.Point(847, 96);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 19);
@@ -121,7 +123,7 @@
             // 
             this.txtmo_number.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtmo_number.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtmo_number.Location = new System.Drawing.Point(947, 77);
+            this.txtmo_number.Location = new System.Drawing.Point(946, 93);
             this.txtmo_number.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtmo_number.Name = "txtmo_number";
             this.txtmo_number.Size = new System.Drawing.Size(318, 27);
@@ -137,7 +139,6 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colpart_serial,
             this.colipn,
             this.coldescription,
             this.coltype,
@@ -167,21 +168,16 @@
             this.colid,
             this.colmo_id,
             this.colitem_number,
-            this.colgroup});
-            this.dataGridView1.Location = new System.Drawing.Point(14, 140);
+            this.colgroup,
+            this.colkit_list_status_item});
+            this.dataGridView1.Location = new System.Drawing.Point(14, 126);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1251, 530);
+            this.dataGridView1.Size = new System.Drawing.Size(1251, 544);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
-            // 
-            // colpart_serial
-            // 
-            this.colpart_serial.DataPropertyName = "part_serial";
-            this.colpart_serial.HeaderText = "Serial Number";
-            this.colpart_serial.Name = "colpart_serial";
-            this.colpart_serial.Width = 180;
             // 
             // colipn
             // 
@@ -353,6 +349,7 @@
             this.colcomment.DataPropertyName = "comment";
             this.colcomment.HeaderText = "Comment";
             this.colcomment.Name = "colcomment";
+            this.colcomment.Width = 200;
             // 
             // colcreated_at
             // 
@@ -418,37 +415,44 @@
             this.colgroup.ReadOnly = true;
             this.colgroup.Visible = false;
             // 
-            // button1
+            // colkit_list_status_item
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(180)))), ((int)(((byte)(62)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(13, 676);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 44);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Save Serial Number";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.colkit_list_status_item.DataPropertyName = "kit_list_item_status_id";
+            this.colkit_list_status_item.HeaderText = "kitlist status item";
+            this.colkit_list_status_item.Name = "colkit_list_status_item";
+            this.colkit_list_status_item.Visible = false;
             // 
-            // button2
+            // btnserial
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(180)))), ((int)(((byte)(62)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(175, 676);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(118, 44);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Complete";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnserial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnserial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(180)))), ((int)(((byte)(62)))));
+            this.btnserial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnserial.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnserial.ForeColor = System.Drawing.Color.White;
+            this.btnserial.Location = new System.Drawing.Point(13, 676);
+            this.btnserial.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnserial.Name = "btnserial";
+            this.btnserial.Size = new System.Drawing.Size(154, 44);
+            this.btnserial.TabIndex = 4;
+            this.btnserial.Text = "Save Serial Number";
+            this.btnserial.UseVisualStyleBackColor = false;
+            this.btnserial.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btncomplete
+            // 
+            this.btncomplete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btncomplete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(180)))), ((int)(((byte)(62)))));
+            this.btncomplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btncomplete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncomplete.ForeColor = System.Drawing.Color.White;
+            this.btncomplete.Location = new System.Drawing.Point(14, 676);
+            this.btncomplete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btncomplete.Name = "btncomplete";
+            this.btncomplete.Size = new System.Drawing.Size(118, 44);
+            this.btncomplete.TabIndex = 5;
+            this.btncomplete.Text = "Complete";
+            this.btncomplete.UseVisualStyleBackColor = false;
+            this.btncomplete.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnnext
             // 
@@ -473,7 +477,7 @@
             // txtserial_number
             // 
             this.txtserial_number.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtserial_number.Location = new System.Drawing.Point(127, 106);
+            this.txtserial_number.Location = new System.Drawing.Point(389, 686);
             this.txtserial_number.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtserial_number.Name = "txtserial_number";
             this.txtserial_number.Size = new System.Drawing.Size(318, 27);
@@ -484,7 +488,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 110);
+            this.label3.Location = new System.Drawing.Point(278, 690);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 19);
@@ -501,7 +505,7 @@
             this.bunifuloading.BorderRadius = 50;
             this.bunifuloading.Image = ((System.Drawing.Image)(resources.GetObject("bunifuloading.Image")));
             this.bunifuloading.IsCircle = true;
-            this.bunifuloading.Location = new System.Drawing.Point(591, 375);
+            this.bunifuloading.Location = new System.Drawing.Point(591, 358);
             this.bunifuloading.Name = "bunifuloading";
             this.bunifuloading.Size = new System.Drawing.Size(100, 100);
             this.bunifuloading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -513,26 +517,59 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1169, 676);
+            this.label5.Location = new System.Drawing.Point(1178, 676);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 12;
             this.label5.Text = "0 out of 0";
             // 
-            // button3
+            // btnincomplete
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(180)))), ((int)(((byte)(62)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(301, 676);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(118, 44);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Incomplete";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnincomplete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnincomplete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(180)))), ((int)(((byte)(62)))));
+            this.btnincomplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnincomplete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnincomplete.ForeColor = System.Drawing.Color.White;
+            this.btnincomplete.Location = new System.Drawing.Point(140, 676);
+            this.btnincomplete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnincomplete.Name = "btnincomplete";
+            this.btnincomplete.Size = new System.Drawing.Size(118, 44);
+            this.btnincomplete.TabIndex = 13;
+            this.btnincomplete.Text = "Incomplete";
+            this.btnincomplete.UseVisualStyleBackColor = false;
+            this.btnincomplete.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnAddSerial
+            // 
+            this.btnAddSerial.BackColor = System.Drawing.Color.Teal;
+            this.btnAddSerial.Enabled = false;
+            this.btnAddSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddSerial.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSerial.ForeColor = System.Drawing.Color.White;
+            this.btnAddSerial.Location = new System.Drawing.Point(13, 77);
+            this.btnAddSerial.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddSerial.Name = "btnAddSerial";
+            this.btnAddSerial.Size = new System.Drawing.Size(162, 43);
+            this.btnAddSerial.TabIndex = 14;
+            this.btnAddSerial.Text = "Add Serial Number";
+            this.btnAddSerial.UseVisualStyleBackColor = false;
+            this.btnAddSerial.Click += new System.EventHandler(this.btnAddSerial_Click);
+            // 
+            // btnscan
+            // 
+            this.btnscan.BackColor = System.Drawing.Color.Teal;
+            this.btnscan.Enabled = false;
+            this.btnscan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnscan.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnscan.ForeColor = System.Drawing.Color.White;
+            this.btnscan.Location = new System.Drawing.Point(183, 77);
+            this.btnscan.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnscan.Name = "btnscan";
+            this.btnscan.Size = new System.Drawing.Size(158, 43);
+            this.btnscan.TabIndex = 15;
+            this.btnscan.Text = "Scan Serial Number";
+            this.btnscan.UseVisualStyleBackColor = false;
+            this.btnscan.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Kitlistfrm
             // 
@@ -540,15 +577,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1271, 732);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnscan);
+            this.Controls.Add(this.btnAddSerial);
+            this.Controls.Add(this.btnincomplete);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.bunifuloading);
             this.Controls.Add(this.txtserial_number);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnprevious_page);
             this.Controls.Add(this.btnnext);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btncomplete);
+            this.Controls.Add(this.btnserial);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtmo_number);
             this.Controls.Add(this.label2);
@@ -579,16 +618,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtmo_number;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnserial;
+        private System.Windows.Forms.Button btncomplete;
         private System.Windows.Forms.Button btnnext;
         private System.Windows.Forms.Button btnprevious_page;
         private System.Windows.Forms.TextBox txtserial_number;
         private System.Windows.Forms.Label label3;
         private Bunifu.UI.WinForms.BunifuPictureBox bunifuloading;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colpart_serial;
+        private System.Windows.Forms.Button btnincomplete;
         private System.Windows.Forms.DataGridViewTextBoxColumn colipn;
         private System.Windows.Forms.DataGridViewTextBoxColumn coldescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn coltype;
@@ -619,6 +657,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colmo_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn colitem_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn colgroup;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colkit_list_status_item;
+        private System.Windows.Forms.Button btnAddSerial;
+        private System.Windows.Forms.Button btnscan;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }
