@@ -25,7 +25,7 @@ namespace BTCP_Enterprise.Class
                 { 
                     await Task.Run(() =>
                     {
-                        conn.Open();
+                    //    conn.Open();
                        Console.WriteLine("Success");
                     });
                 }

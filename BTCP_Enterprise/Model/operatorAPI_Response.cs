@@ -8,7 +8,10 @@ namespace BTCP_Enterprise.Model
 {
     internal class operatorAPI_Response
     {
-    public User user { get; set; }
+        internal object item;
+        internal object items;
+
+        public User user { get; set; }
     }
 
     public class User
