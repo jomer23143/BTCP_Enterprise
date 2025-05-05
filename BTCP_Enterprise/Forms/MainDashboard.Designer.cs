@@ -71,7 +71,9 @@
             this.panel_menubar.Controls.Add(this.panel2);
             this.panel_menubar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_menubar.Location = new System.Drawing.Point(0, 0);
+
             this.panel_menubar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.panel_menubar.Name = "panel_menubar";
             this.panel_menubar.Size = new System.Drawing.Size(2525, 66);
             this.panel_menubar.TabIndex = 0;
@@ -96,11 +98,13 @@
             this.lbl_time.AutoSize = true;
             this.lbl_time.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(45)))));
+
             this.lbl_time.Location = new System.Drawing.Point(2404, 6);
             this.lbl_time.Name = "lbl_time";
             this.lbl_time.Size = new System.Drawing.Size(104, 28);
+
             this.lbl_time.TabIndex = 3;
-            this.lbl_time.Text = "10:10 AM";
+            this.lbl_time.Text = "10:10:00 AM";
             this.lbl_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btn_warehousekiting
@@ -109,8 +113,10 @@
             this.btn_warehousekiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_warehousekiting.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_warehousekiting.ForeColor = System.Drawing.SystemColors.ControlDark;
+
             this.btn_warehousekiting.Location = new System.Drawing.Point(341, 17);
             this.btn_warehousekiting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.btn_warehousekiting.Name = "btn_warehousekiting";
             this.btn_warehousekiting.Size = new System.Drawing.Size(208, 34);
             this.btn_warehousekiting.TabIndex = 2;
@@ -118,6 +124,7 @@
             this.btn_warehousekiting.UseVisualStyleBackColor = true;
             this.btn_warehousekiting.Click += new System.EventHandler(this.btn_warehousekiting_Click);
             // 
+
             // btn_processflow
             // 
             this.btn_processflow.FlatAppearance.BorderSize = 0;
@@ -132,6 +139,7 @@
             this.btn_processflow.Text = "Process Flow";
             this.btn_processflow.UseVisualStyleBackColor = true;
             this.btn_processflow.Click += new System.EventHandler(this.btn_processflow_Click);
+
             // 
             // button4
             // 
@@ -139,8 +147,10 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.ControlDark;
+
             this.button4.Location = new System.Drawing.Point(1197, 17);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(208, 34);
             this.button4.TabIndex = 2;
@@ -168,12 +178,16 @@
             this.btn_material_recieving.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_material_recieving.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_material_recieving.ForeColor = System.Drawing.SystemColors.ControlDark;
+
             this.btn_material_recieving.Location = new System.Drawing.Point(555, 17);
             this.btn_material_recieving.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.btn_material_recieving.Name = "btn_material_recieving";
             this.btn_material_recieving.Size = new System.Drawing.Size(208, 34);
             this.btn_material_recieving.TabIndex = 2;
+
             this.btn_material_recieving.Text = "Kitlist Recieving";
+
             this.btn_material_recieving.UseVisualStyleBackColor = true;
             this.btn_material_recieving.Click += new System.EventHandler(this.btn_material_recieving_Click);
             // 
@@ -193,8 +207,10 @@
             // 
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+
             this.panel2.Location = new System.Drawing.Point(13, 17);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(280, 34);
             this.panel2.TabIndex = 0;
@@ -203,8 +219,10 @@
             // 
             this.panel_main.Controls.Add(this.panel_main_display);
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Fill;
+
             this.panel_main.Location = new System.Drawing.Point(0, 66);
             this.panel_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.panel_main.Name = "panel_main";
             this.panel_main.Size = new System.Drawing.Size(2525, 1203);
             this.panel_main.TabIndex = 1;
@@ -217,7 +235,9 @@
             this.panel_main_display.Controls.Add(this.panel_sidebar);
             this.panel_main_display.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_main_display.Location = new System.Drawing.Point(0, 0);
+
             this.panel_main_display.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.panel_main_display.Name = "panel_main_display";
             this.panel_main_display.Size = new System.Drawing.Size(2525, 1203);
             this.panel_main_display.TabIndex = 0;
@@ -336,10 +356,12 @@
             this.panel_main_form.BorderColor = System.Drawing.Color.Transparent;
             this.panel_main_form.BorderRadius = 12;
             this.panel_main_form.BorderThickness = 1;
+
             this.panel_main_form.Controls.Add(this.pictureBox1);
             this.panel_main_form.Controls.Add(this.Panel_Graph);
             this.panel_main_form.Location = new System.Drawing.Point(341, 6);
             this.panel_main_form.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.panel_main_form.Name = "panel_main_form";
             this.panel_main_form.ShowBorders = true;
             this.panel_main_form.Size = new System.Drawing.Size(2168, 1180);
@@ -386,8 +408,10 @@
             this.panel_sidebar.BorderColor = System.Drawing.Color.Transparent;
             this.panel_sidebar.BorderRadius = 12;
             this.panel_sidebar.BorderThickness = 1;
+
             this.panel_sidebar.Location = new System.Drawing.Point(13, 6);
             this.panel_sidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.panel_sidebar.Name = "panel_sidebar";
             this.panel_sidebar.ShowBorders = true;
             this.panel_sidebar.Size = new System.Drawing.Size(309, 1088);
@@ -405,9 +429,12 @@
             this.ClientSize = new System.Drawing.Size(2525, 1269);
             this.Controls.Add(this.panel_main);
             this.Controls.Add(this.panel_menubar);
+
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.Name = "MainDashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainDashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainDashboard_FormClosing);

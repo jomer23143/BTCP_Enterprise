@@ -88,7 +88,7 @@ namespace BTCP_Enterprise.Forms
             }
         }
 
-        private async void btnTest_Click(object sender, EventArgs e)
+        private  void btnTest_Click(object sender, EventArgs e)
         {
            //await Class.SqlCon.connections(MRPPO.Connection.GetConnectionStringReg);
         }

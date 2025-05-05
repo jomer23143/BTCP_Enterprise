@@ -29,8 +29,13 @@ namespace BTCP_Enterprise.SideBar
 
         private void btn_kitlist_Click(object sender, EventArgs e)
         {
-            Forms.Login login = new Forms.Login(modulename, type);
-            login.Show();
+            //Forms.Login login = new Forms.Login(modulename, type);
+            //login.Show();
+            MainDashboard mainDashboard = (MainDashboard)Application.OpenForms["MainDashboard"];
+            Forms.Kitlistfrm kitlistfrm = new Forms.Kitlistfrm();
+           
+                mainDashboard.LoadChildForm(kitlistfrm);
+       
         }
     }
 }

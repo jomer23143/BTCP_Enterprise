@@ -187,18 +187,36 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddSerialnumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddSerialnumber.Designer.cs">
+      <DependentUpon>AddSerialnumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ConnectionSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ConnectionSettings.designer.cs">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Kitlistfrm.cs">
+    <Compile Include="Forms\Kitlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kitlist.Designer.cs">
+      <DependentUpon>Kitlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ScanSerialnumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScanSerialnumber.Designer.cs">
+      <DependentUpon>ScanSerialnumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Warehousekitting.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Forms\Kitlistfrm.Designer.cs">
-      <DependentUpon>Kitlistfrm.cs</DependentUpon>
+    <Compile Include="Forms\Warehousekitting.Designer.cs">
+      <DependentUpon>Warehousekitting.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Forms\PreAssyOperfrm.cs">
@@ -344,11 +362,20 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddSerialnumber.resx">
+      <DependentUpon>AddSerialnumber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConnectionSettings.resx">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Kitlistfrm.resx">
-      <DependentUpon>Kitlistfrm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Kitlist.resx">
+      <DependentUpon>Kitlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScanSerialnumber.resx">
+      <DependentUpon>ScanSerialnumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Warehousekitting.resx">
+      <DependentUpon>Warehousekitting.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">

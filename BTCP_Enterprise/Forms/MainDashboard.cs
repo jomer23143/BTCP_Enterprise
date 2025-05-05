@@ -30,9 +30,11 @@ namespace BTCP_Enterprise.Forms
         public MainDashboard()
         {
             InitializeComponent();
+
             this.FormBorderStyle = FormBorderStyle.None;
             //this.WindowState = FormWindowState.Maximized;
             btn_logout.TextAlign = ContentAlignment.MiddleCenter;
+
             formManager = new FormManager(panel_menubar, panel_sidebar);
             this.Padding = new Padding(borderSize);
             realTimeClock();
@@ -231,12 +233,18 @@ namespace BTCP_Enterprise.Forms
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             lbl_time.Text = DateTime.Now.ToString("hh:mm tt").ToUpper();
+
             lbl_currentdate.Text = DateTime.Now.ToString("dddd, MMMM dd yyyy");
         }
 
         private void btn_material_recieving_Click(object sender, EventArgs e)
         {
+
+            if (this.panel_main_form.Controls.Count > 0)
+                this.panel_main_form.Controls.Clear();
+            formManager.OpenChildForm(new SideBar.MaterialInventorySidebar(), sender);
 
         }
 
@@ -253,6 +261,7 @@ namespace BTCP_Enterprise.Forms
             if (this.panel_sidebar.Controls.Count > 0)
                 this.panel_sidebar.Controls.Clear();
             formManager.OpenChildForm(new SideBar.WarehouseKitingSidebar(), sender);
+            // formManager.OpenChildForm(new Kitlistfrm(), sender);
         }
 
 
