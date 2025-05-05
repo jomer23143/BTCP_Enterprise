@@ -1,45 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BTCP_Enterprise.Class;
+using BTCP_Enterprise.Modal;
 using Newtonsoft.Json;
-using static BTCP_Enterprise.SideBar.SubAssy_Sidebar;
 
 namespace BTCP_Enterprise.Forms
 {
     public partial class ProductionSegmentFrm : Form
     {
-        public string moid;
+        public string boom_item;
         private object jsonResponse;
 
         public ProductionSegmentFrm(string moid)
         {
             InitializeComponent();
-            this.moid = moid;
+            this.boom_item = moid;
+
+            // Force these settings to avoid borders when embedded
+            this.TopLevel = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Dock = DockStyle.Fill;
         }
 
-   
 
         private void ProductionSegmentFrm_Load(object sender, EventArgs e)
         {
-            string url = "https://app.btcp-enterprise.com/api/production-segment";
-            RequesTProductSegment(url);
+            Console.WriteLine($"MOID: {boom_item}");
+            lbl_Test.Text = boom_item;
+            string url = $"https://app.btcp-enterprise.com/api/product?with_segment={boom_item}";
+            RequesTProductSegment(url, boom_item);
         }
 
-        private void btn_subassembly_Click(object sender, EventArgs e)
-        {
-            MainDashboard mainDashboardSidebar = (MainDashboard)Application.OpenForms["MainDashboard"];  
-            SideBar.SubAssy_Sidebar Subassembly = new SideBar.SubAssy_Sidebar(moid);
-            mainDashboardSidebar.LoadSideBar(Subassembly);
-        }
 
-        private async void RequesTProductSegment(string apiUrl)
+
+        private async void RequesTProductSegment(string apiUrl, string moid)
         {
             try
             {
@@ -49,15 +45,22 @@ namespace BTCP_Enterprise.Forms
 
                 if (string.IsNullOrEmpty(jsonResponse) || jsonResponse.Trim().StartsWith("<"))
                 {
-                    MessageBox.Show("Invalid response from server.", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomeAlert.Alertype type = CustomeAlert.Alertype.Warning;
+                    Modal.CustomeAlert alert = new Modal.CustomeAlert("API ERROR", "Invalid response from server.", type);
+                    alert.ShowDialog();
                     return;
                 }
 
-                var response = JsonConvert.DeserializeObject<List<ItemList>>(jsonResponse);
+                var root = JsonConvert.DeserializeObject<Root>(jsonResponse);
+                var response = root?.data?.FirstOrDefault()?.segment;
+
 
                 if (response == null || response.Count == 0)
                 {
-                    MessageBox.Show("No valid data found.", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    CustomeAlert.Alertype type = CustomeAlert.Alertype.Warning;
+                    Modal.CustomeAlert alert = new Modal.CustomeAlert("Attention: API Error", "No data available\", \"We couldn't find any items for your request.", type);
+                    alert.ShowDialog();
                     return;
                 }
 
@@ -72,14 +75,14 @@ namespace BTCP_Enterprise.Forms
                         BackColor = Color.Transparent // optional
                     };
 
-                   
+
                     pb_loading.Location = new Point(
                         (loadingContainer.Width - pb_loading.Width) / 10,
                         (loadingContainer.Height - pb_loading.Height) / 10
                     );
                     pb_loading.Visible = true;
 
-                  
+
                     loadingContainer.Controls.Add(pb_loading);
                     flowlayoutsegment.Controls.Add(loadingContainer);
 
@@ -105,7 +108,7 @@ namespace BTCP_Enterprise.Forms
                         flowlayoutsegment.Controls.Add(btn);
                     }
 
-                    pb_loading.Visible = false; 
+                    pb_loading.Visible = false;
                 }));
             }
 
@@ -115,20 +118,76 @@ namespace BTCP_Enterprise.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Console.WriteLine($"Error: {ex.Message}");
+                CustomeAlert.Alertype type = CustomeAlert.Alertype.Warning;
+                Modal.CustomeAlert alert = new Modal.CustomeAlert("API ERROR", ex.Message, type);
+                alert.ShowDialog();
+
             }
         }
+        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+        public class ApiResponse
+        {
+            public int id { get; set; }
+            public string bom_item { get; set; }
+            public string description { get; set; }
+            public string bom_revision_number { get; set; }
+            public DateTime created_at { get; set; }
+            public DateTime updated_at { get; set; }
+            public List<Segment> segment { get; set; }
+        }
+
+        public class Link
+        {
+            public string url { get; set; }
+            public string label { get; set; }
+            public bool active { get; set; }
+        }
+
+        public class Root
+        {
+            public int current_page { get; set; }
+            public List<ApiResponse> data { get; set; }
+            public string first_page_url { get; set; }
+            public int from { get; set; }
+            public int last_page { get; set; }
+            public string last_page_url { get; set; }
+            public List<Link> links { get; set; }
+            public object next_page_url { get; set; }
+            public string path { get; set; }
+            public int per_page { get; set; }
+            public object prev_page_url { get; set; }
+            public int to { get; set; }
+            public int total { get; set; }
+        }
+
+        public class Segment
+        {
+            public int id { get; set; }
+            public int product_id { get; set; }
+            public string name { get; set; }
+            public object descripion { get; set; }
+            public int is_serial { get; set; }
+            public int is_active { get; set; }
+            public object format { get; set; }
+            public DateTime created_at { get; set; }
+            public DateTime updated_at { get; set; }
+        }
+
+
+
 
         private void ProcessButton_Click(object sender, EventArgs e)
         {
-          
+
             Button clickedButton = sender as Button;
             if (clickedButton != null)
             {
                 MainDashboard mainDashboard = (MainDashboard)Application.OpenForms["MainDashboard"];
                 object processId = clickedButton.Tag;
                 string processName = clickedButton.Text;
-                SideBar.ProductionProcessSidebar process = new SideBar.ProductionProcessSidebar(processId, processName,moid);
+                SideBar.ProductionProcessSidebar process = new SideBar.ProductionProcessSidebar(processId, processName, lbl_Test.Text);
                 mainDashboard.LoadSideBar(process);
             }
         }

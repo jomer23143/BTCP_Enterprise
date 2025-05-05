@@ -112,7 +112,7 @@
             this.txt_serial.TextPlaceholder = "";
             this.txt_serial.UseSystemPasswordChar = false;
             this.txt_serial.WordWrap = true;
-            this.txt_serial.TextChange += new System.EventHandler(this.bunifuTextBox1_TextChange);
+            this.txt_serial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_serial_KeyDown);
             // 
             // label1
             // 

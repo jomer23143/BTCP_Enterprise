@@ -17,29 +17,34 @@ namespace BTCP_Enterprise.SideBar
     {
         private object id;
         private object jsonResponse;
-        public string moid;
+        public string themoid;
         public string segment;
+
         public ProductionProcessSidebar(object id, string segment, string moid)
         {
             InitializeComponent();
             lbl_process.Text = segment;
             this.id = id;
             // label1.Text = id.ToString();
-            Myrequest(id.ToString());
+          
             Process_Panel.AutoScroll = true;
-            this.moid = moid;
+            this.themoid = moid;
             this.segment = segment;
+            Myrequest(id.ToString(), themoid);
         }
 
 
-        private async void Myrequest(string modid)
+        private async void Myrequest(string moidmodid,string boomid)
         {
             string jsonResponse = "";
 
             try
             {
-                string apiUrl = $"https://app.btcp-enterprise.com/api/production-segment?id={modid}";
-                jsonResponse = await Utilities.WebRequestApi.GetData_httpclient(apiUrl);
+                //string apiUrl = $"https://app.btcp-enterprise.com/api/product?with_segment={id}";
+                string postData = $"https://app.btcp-enterprise.com/api/product?bom_item={boomid}&with_segment={id}&with_process={id}";
+                Console.WriteLine($"API URL: {postData}");
+
+                jsonResponse = await Utilities.WebRequestApi.GetData_httpclient(postData);
 
                 Console.WriteLine($"Raw API Response: {jsonResponse}");
 
@@ -49,15 +54,24 @@ namespace BTCP_Enterprise.SideBar
                     return;
                 }
 
-                var responseList = JsonConvert.DeserializeObject<List<ProductionSegment>>(jsonResponse);
+                var root = JsonConvert.DeserializeObject<Root>(jsonResponse);
 
-                if (responseList == null || responseList.Count == 0)
+
+                if (root?.data == null || root.data.Count == 0)
                 {
                     MessageBox.Show("No valid data found.", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                var segment = responseList[0]; // You can loop if needed
+                var firstDatum = root.data[0];
+
+                if (firstDatum.segment == null || firstDatum.segment.Count == 0)
+                {
+                    MessageBox.Show("No segment data found.", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var segment = firstDatum.segment[0];
 
                 if (segment.process == null || segment.process.Count == 0)
                 {
@@ -65,31 +79,9 @@ namespace BTCP_Enterprise.SideBar
                     return;
                 }
 
+                // UI updates
                 Process_Panel.Invoke((MethodInvoker)(() =>
                 {
-
-                    Process_Panel.Controls.Clear();
-
-                    Panel loadingContainer = new Panel
-                    {
-                        Width = Process_Panel.ClientSize.Width,
-                        Height = Process_Panel.ClientSize.Height,
-                        BackColor = Color.Transparent // optional
-                    };
-
-
-                    pb_loadingSidebar.Location = new Point(
-                        (loadingContainer.Width - pb_loadingSidebar.Width) / 10,
-                        (loadingContainer.Height - pb_loadingSidebar.Height) / 10
-                    );
-                    pb_loadingSidebar.Visible = true;
-
-
-                    loadingContainer.Controls.Add(pb_loadingSidebar);
-                    Process_Panel.Controls.Add(loadingContainer);
-
-                    Process_Panel.Controls.Clear();
-
                     Process_Panel.Controls.Clear();
 
                     foreach (var proc in segment.process)
@@ -112,6 +104,7 @@ namespace BTCP_Enterprise.SideBar
                         Process_Panel.Controls.Add(btn);
                     }
                 }));
+
             }
             catch (JsonReaderException ex)
             {
@@ -119,33 +112,72 @@ namespace BTCP_Enterprise.SideBar
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"Error: {ex.Message}");
                 MessageBox.Show($"Error: {ex.Message}", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public class ProductionSegment
+        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+        public class Datum
         {
             public int id { get; set; }
-            public string name { get; set; }
-        
-            [JsonProperty("descripion")]
-            public string Description { get; set; }
-            public string created_at { get; set; }
-            public string updated_at { get; set; }
-            public List<Process> process { get; set; }
+            public string bom_item { get; set; }
+            public string description { get; set; }
+            public string bom_revision_number { get; set; }
+            public DateTime created_at { get; set; }
+            public DateTime updated_at { get; set; }
+            public List<Segment> segment { get; set; }
+        }
+
+        public class Link
+        {
+            public string url { get; set; }
+            public string label { get; set; }
+            public bool active { get; set; }
         }
 
         public class Process
         {
             public int id { get; set; }
-            public int production_segment_id { get; set; }
+            public int product_segment_id { get; set; }
             public string name { get; set; }
-
-            [JsonProperty("descripion")]
-            public string Description { get; set; }
-            public string created_at { get; set; }
-            public string updated_at { get; set; }
+            public object descripion { get; set; }
+            public int is_active { get; set; }
+            public DateTime created_at { get; set; }
+            public DateTime updated_at { get; set; }
         }
+
+        public class Root
+        {
+            public int current_page { get; set; }
+            public List<Datum> data { get; set; }
+            public string first_page_url { get; set; }
+            public int from { get; set; }
+            public int last_page { get; set; }
+            public string last_page_url { get; set; }
+            public List<Link> links { get; set; }
+            public object next_page_url { get; set; }
+            public string path { get; set; }
+            public int per_page { get; set; }
+            public object prev_page_url { get; set; }
+            public int to { get; set; }
+            public int total { get; set; }
+        }
+
+        public class Segment
+        {
+            public int id { get; set; }
+            public int product_id { get; set; }
+            public string name { get; set; }
+            public object descripion { get; set; }
+            public int is_serial { get; set; }
+            public int is_active { get; set; }
+            public object format { get; set; }
+            public DateTime created_at { get; set; }
+            public DateTime updated_at { get; set; }
+            public List<Process> process { get; set; }
+        }
+
 
 
 
@@ -158,7 +190,7 @@ namespace BTCP_Enterprise.SideBar
                 MainDashboard mainDashboard = (MainDashboard)Application.OpenForms["MainDashboard"];
                 string processId = clickedButton.Tag.ToString();
                 string processName = clickedButton .Text;
-                string moid = this.moid;
+                string moid = this.themoid;
                 string seg = segment;
                 string serialnumber = string.Empty;
                 string toplvlipn = string.Empty;

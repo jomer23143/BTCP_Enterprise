@@ -15,7 +15,7 @@ namespace BTCP_Enterprise.SideBar
         string modulename = "Pre-Assy";
         string type;
 
-        public string MOID;
+        public string   MOID;
         private object jsonResponse;
 
         public PreAss_Sidebar(string mOID)
@@ -168,7 +168,7 @@ namespace BTCP_Enterprise.SideBar
                 MainDashboard mainDashboard = (MainDashboard)Application.OpenForms["MainDashboard"];
                 string processId = clickedButton.Tag.ToString();
                 string processName = clickedButton.Text;
-                string moid = MOID;
+                string moid =Convert.ToString(MOID);
                 Forms.PreAssyOperfrm s1frm = new Forms.PreAssyOperfrm(processId,processName, MOID);
                 mainDashboard.LoadChildForm(s1frm);
             }
