@@ -35,7 +35,6 @@ namespace BTCP_Enterprise.Forms
             txt_scanid.Select();
             lbl_userinfo.Text = "Tap ID to Proceed.";
             lbl_position.Text = "";
-            //txt_scanid.Hide();
             btn_close.TextAlign = ContentAlignment.MiddleCenter;
             this.modulename = modulename;
             this.type = type;
@@ -77,16 +76,16 @@ namespace BTCP_Enterprise.Forms
             {
                 lbl_userinfo.Text = "Processing...";
 
-                string apiUrl = "https://app.btcp-enterprise.com/api/login-production"; // No need to append scan_id
+                string apiUrl = "https://app.btcp-enterprise.com/api/login-production"; 
 
-                // Call API with correct dat
+               
                 Myrequest(apiUrl, txt_scanid.Text);
 
-                // Clear input field after scanning
+               
                 txt_scanid.Clear();
                 txt_scanid.Focus();
 
-                e.Handled = true; // Prevents the Enter key from making a system sound
+                e.Handled = true;
             }
         }
 
@@ -116,20 +115,20 @@ namespace BTCP_Enterprise.Forms
                     return;
                 }
 
-                // ✅ Corrected property accesses
+               
                 txt_id.Text = response.user.employee_id.ToString() ?? "N/A";
                 lbl_userinfo.Text = $"{response.user.profile?.first_name ?? ""} {response.user.profile?.last_name ?? ""}".Trim();
                 lbl_position.Text = response.user.job_title ?? "Unknown";
 
-                // ✅ Default image setup
+                
                 string defaultImagePath = Path.Combine(Application.StartupPath, "Assets", "Unknown.png");
-                string imagePath = defaultImagePath;  // No image found in response
+                string imagePath = defaultImagePath; 
 
                 pb_rfid.Image = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
 
                 await Task.Delay(1000);
 
-                // ✅ Reset UI
+                
                 string defaultImagePathRfid = Path.Combine(Application.StartupPath, "Assets", "rfid.png");
                 txt_id.Text = "";
                 lbl_userinfo.Text = "Tap ID to Proceed.";
@@ -183,6 +182,10 @@ namespace BTCP_Enterprise.Forms
                         MessageBox.Show("Main Dashboard not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
+
+                case "OperatorsVFrm":
+                   MessageBox.Show(type, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
                 default:
                     MessageBox.Show("Module not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
@@ -190,10 +193,6 @@ namespace BTCP_Enterprise.Forms
 
            
         }
-
-
-
-
 
         private void btn_close_Click(object sender, EventArgs e)
         {

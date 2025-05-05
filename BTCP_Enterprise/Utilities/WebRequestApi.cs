@@ -72,7 +72,7 @@ namespace BTCP_Enterprise.Utilities
                 {
                     Method = HttpMethod.Get,
                     RequestUri = new Uri(url),
-                    //Content = new StringContent(data, Encoding.UTF8, "application/json")
+                  //  Content = new StringContent(data, Encoding.UTF8, "application/json")
                 };
                 HttpResponseMessage response = await client.SendAsync(request);
                 responseData = await response.Content.ReadAsStringAsync();
@@ -119,7 +119,7 @@ namespace BTCP_Enterprise.Utilities
             }
         }
 
-
+     
 
     }
 }
