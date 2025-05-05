@@ -24,9 +24,9 @@ namespace BTCP_Enterprise.Forms
         {
             bunifuloading.Hide();
             dgSerialnumber.DataSource = Forms.Kitlistfrm.list_serial;
-            if (dgSerialnumber.Rows.Count > 1 )
-                dgSerialnumber.Rows[0].Cells[0].Selected = false;
-            dgSerialnumber.Rows[dgSerialnumber.RowCount - 1].Selected = true;
+            //if (dgSerialnumber.Rows.Count > 1 )
+            //    dgSerialnumber.Rows[0].Cells[0].Selected = false;
+            //dgSerialnumber.Rows[dgSerialnumber.RowCount - 1].Selected = true;
             label1.Text = String.Format("IPN : {0}",Forms.Kitlistfrm.kit_list_item_ipn);
         }
 
@@ -85,7 +85,7 @@ namespace BTCP_Enterprise.Forms
             {
                 var content = new StringContent(res, Encoding.UTF8, "application/json");
 
-                response = await client.PostAsync("https://app.btcp-enterprise.com/api/kit-list-item-serial/save-serial", content);
+                response = await client.PostAsync("https://app.btcp-enterprise.com/api/serial/save-serial", content);
                 responseData = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode.ToString() == "422")
                 {
@@ -97,6 +97,19 @@ namespace BTCP_Enterprise.Forms
                     MessageBox.Show("Saved Serial Number");
                 }
             }
+        }
+
+        private void dgSerialnumber_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowindx = (e.RowIndex + 1).ToString();
+            var centerformat = new StringFormat()
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowindx, this.Font, SystemBrushes.ControlText, headerBounds, centerformat);
         }
     }
 }

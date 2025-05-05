@@ -28,6 +28,7 @@ namespace BTCP_Enterprise.Forms
         public static int total_pick_quantity = 0;
         public static DataTable list_serial = null;
         public static string mo_number = "";
+        int rowid;
         DataSet GetMoheaderDetails = new DataSet();
         
         public Kitlistfrm()
@@ -223,16 +224,27 @@ namespace BTCP_Enterprise.Forms
                         btnnext.Enabled = false;
                     else
                         btnnext.Enabled = true;
-                    label5.Text = model_modetails.to.ToString() + " out of " + model_modetails.total;
                     string res3 = JsonConvert.SerializeObject(model_modetails.data);
                     List<Model.kitlist.manufacturing_order_items> model = (List<Model.kitlist.manufacturing_order_items>)JsonConvert.DeserializeObject(res3, typeof(List<Model.kitlist.manufacturing_order_items>));
+                    foreach (var row in model)
+                    {
+                        if (row.status.name.ToUpper() == "COMPLETE")
+                        {
+                            bunifuloading.Hide();
+                            MessageBox.Show("This is MO number is already Complete");
+                            return;
+                        }
+                    }
                     bunifuloading.Hide();
                     dataGridView1.DataSource = model;
+                    label5.Text = model_modetails.to.ToString() + " out of " + model_modetails.total;
                     kit_list_item_id = Convert.ToInt32(dataGridView1.Rows[0].Cells[colid.Name].Value);
                     kit_list_item_ipn = dataGridView1.Rows[0].Cells[colipn.Name].Value.ToString();
                     total_pick_quantity = Convert.ToInt32(dataGridView1.Rows[0].Cells[colpickqty.Name].Value);
                     btnAddSerial.Enabled = true;   
                     btnscan.Enabled = true;
+                    btncomplete.Visible = true;
+                    btnincomplete.Visible = true;
                 }
                 else
                 {
@@ -261,6 +273,8 @@ namespace BTCP_Enterprise.Forms
                     total_pick_quantity = Convert.ToInt32(dataGridView1.Rows[0].Cells[colpickqty.Name].Value);
                     btnAddSerial.Enabled = true;
                     btnscan.Enabled = true;
+                    btncomplete.Visible = true;
+                    btnincomplete.Visible = true;
                 }
                 mo_number = txtmo_number.Text;
                 //dataGridView2.Rows[0].Cells[0].Selected = true;
@@ -687,7 +701,7 @@ namespace BTCP_Enterprise.Forms
         private async void btnAddSerial_Click(object sender, EventArgs e)
         {
             list_serial.Clear();
-            string url = $@"https://app.btcp-enterprise.com/api/kit-list-item-serial/view-serial?kit_list_item_id={kit_list_item_id}";
+            string url = $@"https://app.btcp-enterprise.com/api/serial/view-serial?kit_list_item_id={kit_list_item_id}";
             string responseData = await GetMohDetails(url);
             List<Model.kitlist.get_serial> serials = (List<Model.kitlist.get_serial>)JsonConvert.DeserializeObject(responseData, typeof(List<Model.kitlist.get_serial>));
             foreach (var item in serials)
@@ -711,12 +725,13 @@ namespace BTCP_Enterprise.Forms
            kit_list_item_ipn = dataGridView1.Rows[rowindex].Cells[colipn.Name].Value.ToString();
            kit_list_item_id =  Convert.ToInt32(dataGridView1.Rows[rowindex].Cells[colid.Name].Value);
            total_pick_quantity = Convert.ToInt32(dataGridView1.Rows[rowindex].Cells[colpickqty.Name].Value);
+           rowid = Convert.ToInt32(dataGridView1.Rows[rowindex].Cells[colid.Name].Value);
         }
 
         private async void button2_Click_1(object sender, EventArgs e)
         {
             list_serial.Clear();
-            string url = $@"https://app.btcp-enterprise.com/api/kit-list-item-serial/view-serial?kit_list_item_id={kit_list_item_id}";
+            string url = $@"https://app.btcp-enterprise.com/api/serial/view-serial?kit_list_item_id={kit_list_item_id}";
             string responseData = await GetMohDetails(url);
             List<Model.kitlist.get_serial> serials = (List<Model.kitlist.get_serial>)JsonConvert.DeserializeObject(responseData, typeof(List<Model.kitlist.get_serial>));
             
@@ -731,7 +746,7 @@ namespace BTCP_Enterprise.Forms
                 list_serial.Rows.Add(data1);
             }
 
-            Forms.ScanSerialnumber ScanSerialnumber = new Forms.ScanSerialnumber(this);
+            Forms.ScanSerialnumber ScanSerialnumber = new Forms.ScanSerialnumber(this, kit_list_item_id);
             ScanSerialnumber.Show();
         }
         public async void save_serail()
@@ -747,7 +762,7 @@ namespace BTCP_Enterprise.Forms
             {
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                response = await client.PostAsync($@"https://app.btcp-enterprise.com/api/kit-list-item-serial/view-serial", content);
+                response = await client.PostAsync($@"https://app.btcp-enterprise.com/api/serial/view-serial", content);
                 responseData = await response.Content.ReadAsStringAsync();
             }
             List<Model.kitlist.get_serial> serials = (List<Model.kitlist.get_serial>)JsonConvert.DeserializeObject(responseData, typeof(List<Model.kitlist.get_serial>));
@@ -763,7 +778,7 @@ namespace BTCP_Enterprise.Forms
                 list_serial.Rows.Add(data1);
             }
 
-            Forms.ScanSerialnumber ScanSerialnumber = new Forms.ScanSerialnumber(this);
+            Forms.ScanSerialnumber ScanSerialnumber = new Forms.ScanSerialnumber(this, kit_list_item_id);
             ScanSerialnumber.Show();
         }
     }

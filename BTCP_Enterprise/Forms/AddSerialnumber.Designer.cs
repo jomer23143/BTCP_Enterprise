@@ -54,6 +54,7 @@
             this.dgSerialnumber.Name = "dgSerialnumber";
             this.dgSerialnumber.Size = new System.Drawing.Size(382, 380);
             this.dgSerialnumber.TabIndex = 15;
+            this.dgSerialnumber.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgSerialnumber_RowPostPaint);
             // 
             // btnsave_serial
             // 
@@ -107,7 +108,7 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "kit_list_item_id";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "id";
             this.dataGridViewTextBoxColumn2.HeaderText = "ID";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;

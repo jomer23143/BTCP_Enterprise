@@ -16,10 +16,12 @@ namespace BTCP_Enterprise.Forms
     {
         Forms.Kitlistfrm Kitlistfrm;
         string id = "";
-        public ScanSerialnumber(Kitlistfrm kitlist)
+        public int _rowid;
+        public ScanSerialnumber(Kitlistfrm kitlist, int rowid)
         {
             InitializeComponent();
             this.Kitlistfrm = kitlist;
+            this._rowid = rowid;
         }
 
         private void ScanSerialnumber_Load(object sender, EventArgs e)
@@ -93,7 +95,7 @@ namespace BTCP_Enterprise.Forms
             {
                 kit_list_item_serial = list_serial_details
             };
-            string json = JsonConvert.SerializeObject(scan_Serial);
+            //string json = JsonConvert.SerializeObject(scan_Serial);
             //string responseData = "";
             //HttpResponseMessage response = new HttpResponseMessage();
             //using (HttpClient client = new HttpClient())
@@ -105,9 +107,9 @@ namespace BTCP_Enterprise.Forms
             //}
             for (int i = 0; i < Kitlistfrm.dataGridView1.Rows.Count; i++) 
             {
-                if (Kitlistfrm.dataGridView1.Rows[i].Cells[26].Value.ToString() == id)
+                if (Kitlistfrm.dataGridView1.Rows[i].Cells["colid"].Value.ToString() == _rowid.ToString())
                 {
-                    Kitlistfrm.dataGridView1.Rows[i].Cells[1].Value = 3;
+                    Kitlistfrm.dataGridView1.Rows[i].Cells["colkitted"].Value = scan_qty;
                 }
             } 
         }
@@ -139,6 +141,29 @@ namespace BTCP_Enterprise.Forms
                 }
             });
             return responseData;
+        }
+
+        private void dgSerialnumber_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowindx = (e.RowIndex + 1).ToString();
+            var centerformat = new StringFormat()
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowindx, this.Font, SystemBrushes.ControlText, headerBounds, centerformat);
+        }
+
+        private void dgSerialnumber_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtserial_number.Focus();
+        }
+
+        private void dgSerialnumber_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtserial_number.Focus();
         }
     }
 }

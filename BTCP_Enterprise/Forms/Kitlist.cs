@@ -1,5 +1,6 @@
 ﻿using BTCP_Enterprise.Class;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,6 +40,7 @@ namespace BTCP_Enterprise.Forms
                 string json_mo_details = JsonConvert.SerializeObject(model_mo.data);
                 dynamic temp = JsonConvert.DeserializeObject(json_mo_details);
                 List<Model.kitlist.manufacturing_order_items> model_mo_details = (List<Model.kitlist.manufacturing_order_items>)JsonConvert.DeserializeObject(json_mo_details, typeof(List<Model.kitlist.manufacturing_order_items>));
+
                 dataGridView1.DataSource = model_mo_details;
                 foreach (var item in model_mo_details)
                 {
@@ -382,6 +384,54 @@ namespace BTCP_Enterprise.Forms
             column.Visible = false;
             dataGridView1.Columns.Add(column);
 
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (dataGridView1.Rows.Count == 0)
+            //    return;
+            //int row_index = dataGridView1.CurrentCell.RowIndex;
+            //if (dataGridView1.Rows[row_index].Cells[colcomment.Name].Value.ToString().ToUpper() == "OKAY" || dataGridView1.Rows[row_index].Cells[colcomment.Name].Value.ToString().ToUpper() == "OK")
+            //{
+            //    dataGridView1.Rows[row_index].Cells[colstatus_item.Name].Value = 1;
+            //}
+            //else
+            //{
+            //    dataGridView1.Rows[row_index].Cells[colstatus_item.Name].Value = 0;
+            //}
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Rows.Count == 0)
+                return;
+           
+            if (dataGridView1.Rows[e.RowIndex].Cells[colcomment.Name].Value.ToString().ToUpper() == "OKAY" || dataGridView1.Rows[e.RowIndex].Cells[colcomment.Name].Value.ToString().ToUpper() == "OK")
+            {
+                dataGridView1.Rows[e.RowIndex].Cells[colstatus_item.Name].Value = 1;
+            }
+            else
+            {
+                dataGridView1.Rows[e.RowIndex].Cells[colstatus_item.Name].Value = 0;
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (dataGridView1.Columns[e.ColumnIndex].Name == "colstatus_item")
+            //{
+            //    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells[colstatus_item.Name];
+            //    if (chk.Value == chk.FalseValue || chk.Value == null)
+            //    {
+            //        dataGridView1.Rows[e.RowIndex].Cells[colcomment.Name].Value = "OK";
+            //        chk.Value = chk.TrueValue;
+            //    }
+            //    else
+            //    {
+            //        dataGridView1.Rows[e.RowIndex].Cells[colcomment.Name].Value = "";
+            //        chk.Value = chk.FalseValue;
+            //    }
+            //}
         }
     }
 }

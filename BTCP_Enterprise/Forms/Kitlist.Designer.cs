@@ -163,6 +163,9 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1334, 538);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // txtmo_number
             // 
@@ -212,6 +215,7 @@
             this.colpart_serial.DataPropertyName = "part_serial";
             this.colpart_serial.HeaderText = "Serial Number";
             this.colpart_serial.Name = "colpart_serial";
+            this.colpart_serial.Visible = false;
             this.colpart_serial.Width = 180;
             // 
             // colipn

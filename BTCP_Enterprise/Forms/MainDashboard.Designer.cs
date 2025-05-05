@@ -168,7 +168,7 @@
             this.btn_material_recieving.Name = "btn_material_recieving";
             this.btn_material_recieving.Size = new System.Drawing.Size(156, 28);
             this.btn_material_recieving.TabIndex = 2;
-            this.btn_material_recieving.Text = "Material Recieving";
+            this.btn_material_recieving.Text = "Kit Recieving";
             this.btn_material_recieving.UseVisualStyleBackColor = true;
             this.btn_material_recieving.Click += new System.EventHandler(this.btn_material_recieving_Click);
             // 

@@ -68,6 +68,9 @@
             this.dgSerialnumber.Name = "dgSerialnumber";
             this.dgSerialnumber.Size = new System.Drawing.Size(515, 433);
             this.dgSerialnumber.TabIndex = 18;
+            this.dgSerialnumber.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSerialnumber_CellClick);
+            this.dgSerialnumber.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSerialnumber_CellContentClick);
+            this.dgSerialnumber.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgSerialnumber_RowPostPaint);
             // 
             // btnsave_scan
             // 
@@ -139,6 +142,7 @@
             this.coliscan.DataPropertyName = "is_scan";
             this.coliscan.HeaderText = "Column1";
             this.coliscan.Name = "coliscan";
+            this.coliscan.Visible = false;
             // 
             // ScanSerialnumber
             // 
